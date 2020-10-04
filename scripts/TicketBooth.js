@@ -1,5 +1,19 @@
+import { Counter } from "./counter/CounterHome";
+
 const contentTarget = document.querySelector(".entry");
 const eventHub = document.querySelector("#state-fair");
+
+eventHub.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id.endsWith("Ticket-btn")) {
+    const purchaseEvent = new CustomEvent("anyTicketPurchased", {
+      detail: {
+        ticketPurchased: Counter(),
+        
+      },
+    });
+    eventHub.dispatchEvent(purchaseEvent);
+  }
+});
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "rideTicket-btn") {
